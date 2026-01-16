@@ -10,6 +10,7 @@ app.get("/todo", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM todo"); // table adı todo
     res.json(result.rows);
+    console.log(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -23,6 +24,7 @@ app.post("/todo", async (req, res) => {
       "INSERT INTO todo (text) VALUES ($1) RETURNING *",
       [text]
     );
+
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
