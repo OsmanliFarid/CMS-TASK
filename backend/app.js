@@ -16,7 +16,6 @@ app.get("/todo", async (req, res) => {
   }
 });
 
-// POST /todo → yeni todo əlavə edir
 app.post("/todo", async (req, res) => {
   const { text } = req.body;
   try {
