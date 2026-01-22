@@ -1,14 +1,12 @@
-// index.js
 import express from "express";
 import pool from "./db.js";
 
 const app = express();
 app.use(express.json());
 
-// GET /todo → bütün todo-ları gətirir
 app.get("/todo", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM todo"); // table adı todo
+    const result = await pool.query("SELECT * FROM todo");
     res.json(result.rows);
     console.log(result);
   } catch (err) {
@@ -16,12 +14,12 @@ app.get("/todo", async (req, res) => {
   }
 });
 
-app.post("/todo", async (req, res) => {
+app.post("/todo-create", async (req, res) => {
   const { text } = req.body;
   try {
     const result = await pool.query(
       "INSERT INTO todo (text) VALUES ($1) RETURNING *",
-      [text]
+      [text],
     );
 
     res.status(201).json(result.rows[0]);
