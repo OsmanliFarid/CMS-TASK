@@ -1,9 +1,10 @@
 import express from "express";
 import pool from "./db.js";
+import cartRoutes from "./routes/cartRoutes.js";
 
 const app = express();
 app.use(express.json());
-
+app.use("/carts", cartRoutes);
 app.get("/todo", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM todo");
@@ -28,6 +29,6 @@ app.post("/todo-create", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.listen(3030, () => {
   console.log("Server running on port 3000");
 });
