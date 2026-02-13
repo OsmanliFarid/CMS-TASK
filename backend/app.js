@@ -1,10 +1,12 @@
 import express from "express";
 import pool from "./db.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
-app.use("/carts", cartRoutes);
+app.use("/cart-list", cartRoutes);
 app.get("/todo", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM todo");
