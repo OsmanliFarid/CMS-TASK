@@ -15,7 +15,7 @@ cartRoutes.get("/", async (req, res) => {
 });
 // get filter status cart items
 cartRoutes.get("/filter", async (req, res) => {
-  const { status } = req.query; // query param
+  const { status } = req.query;
 
   try {
     let result;
